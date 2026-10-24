@@ -1,0 +1,46 @@
+{
+  "id": "pilotdeck",
+  "name": "PilotDeck",
+  "version": "0.1.0",
+  "description": "Agnx 外置子应用：PilotDeck 整仓 + Web UI iframe（不嵌 Electron）",
+  "engines": {
+    "agnx": ">=1.0.0"
+  },
+  "main": "./dist/index.js",
+  "icon": "./ui/public/favicon.svg",
+  "platforms": {
+    "desktop": "supported",
+    "web": "supported",
+    "mobile": "unsupported"
+  },
+  "sidecar": {
+    "supervised": true,
+    "ensureTool": ".agnx/tools/ensure-pilotdeck.mjs",
+    "stateFile": "pilotdeck.json",
+    "defaultPort": 3011,
+    "lifecycle": "lazy"
+  },
+  "guest": {
+    "kind": "web",
+    "auth": "none",
+    "capabilities": [
+      "cookies",
+      "websocket"
+    ],
+    "preferStrategy": "auto"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "id": "pilotdeck.open",
+        "title": "PilotDeck"
+      }
+    ],
+    "panels": [
+      {
+        "id": "pilotdeck.main",
+        "title": "PilotDeck"
+      }
+    ]
+  }
+}
